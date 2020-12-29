@@ -1,0 +1,30 @@
+﻿<h3>Lista de Clientes</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Inscriçao Estadual</th>
+            <th>Inscrição Municipal</th>
+            <th>Complemento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in (List<AplicacaoWeb.Models.Model.Empresa>) ViewBag.ListaEmpresas)
+            {
+                <tr>
+                    <td>@item.IdEmpresa</td>
+                    <td>@item.RazaoSocial</td>
+                    <td>@item.CNPJ</td>
+                    <td>@item.IE</td>
+                    <td>@item.IM</td>
+                    <td>@item.Complemento</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
