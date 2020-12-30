@@ -13,11 +13,10 @@ namespace AplicacaoWeb.Uteis
         
         private static string ConnectionString = GetConnectionString();
         private static SqlConnection Connection;
+
         static private string GetConnectionString()
         {
-            // To avoid storing the connection string in your code,
-            // you can retrieve it from a configuration file.
-            return "Server=192.168.0.14;Initial Catalog=SisEdu;Integrated Security=true;Persist Security Info=False;";
+            return "Server=srvrk4;Initial Catalog=SisEdu;Integrated Security=true;Persist Security Info=False;";
         }
 
 
