@@ -9,6 +9,6 @@ namespace AplicacaoWeb.Models.Model
     {
         public int IdAluno { get; set; }
         public int IdPessoaFisica { get; set; }
-
+        
     }
 }

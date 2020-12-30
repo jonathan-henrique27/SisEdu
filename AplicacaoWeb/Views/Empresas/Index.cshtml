@@ -1,8 +1,10 @@
-﻿<h3>Lista de Clientes</h3>
+﻿<h3>Lista de Empresas</h3>
 
 <table class="table table-bordered">
     <thead>
         <tr>
+            <th></th>
+            <th></th>
             <th>Codigo</th>
             <th>Nome</th>
             <th>CNPJ</th>
@@ -13,9 +15,12 @@
     </thead>
     <tbody>
         @{
-            foreach (var item in (List<AplicacaoWeb.Models.Model.Empresa>) ViewBag.ListaEmpresas)
+            foreach (var item in (List<AplicacaoWeb.Models.Model.Empresa>)ViewBag.ListaEmpresas)
             {
                 <tr>
+                    <td><button type="button" class="btn btn-warning" onclick="Editar(@item.IdEmpresa)">Editar</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="Excluir(@item.IdEmpresa)">Excluir</button></td>
+
                     <td>@item.IdEmpresa</td>
                     <td>@item.RazaoSocial</td>
                     <td>@item.CNPJ</td>
@@ -28,4 +33,22 @@
         }
     </tbody>
 </table>
+<br />
+<button class="btn btn-block btn-primary" type="button" onclick="Cadastrar()">Cadastrar Empresa</button>
+
+<script>
+    function Cadastrar()
+    {
+        window.location.href = "../Empresas/Cadastro"
+    }
+
+    function Editar(id) {
+        window.location.href = "../Empresas/Cadastro/" + id;
+    }
+
+    function Excluir(IdEmpresa) {
+        window.location.href = "../Empresas/Excluir/" + IdEmpresa;
+    }
+
+</script>
 

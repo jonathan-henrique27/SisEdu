@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\ViewModel\" />
-    <Folder Include="NewFolder\" />
+    <Compile Remove="Models\ViewModel\**" />
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="Models\ViewModel\**" />
+    <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="Models\ViewModel\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="Models\ViewModel\**" />
+    <None Remove="NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
