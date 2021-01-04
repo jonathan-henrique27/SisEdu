@@ -60,7 +60,8 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin:100px;
+  padding:10%;
 }
 .footer {
   position: absolute;
@@ -68,4 +69,38 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+.choices {
+    padding: 50px;
+    position: center;
+}
+
+.choice {
+    text-align: center;
+    margin: 15px;
+    display: inline-block;
+    text-decoration: none;
+    background-color: #DCDCDC;
+    padding: 25px;
+    color: #808080;
+    width: 190px;
+    height: 190px;
+    line-height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+    overflow: hidden;
+    box-shadow: 3px 4px 4px rgba(0,0,0,0.29);
+    border-bottom: solid 3px #808080;
+    transition: .4s;
+    text-wrap: inherit;
+    font-family: 'Carrois Gothic SC', sans-serif;
+}
+
+    .choice:active {
+        transform: translateY(2px);
+        -ms-transform: translateY(2px);
+        -webkit-transform: translateY(2px);
+        box-shadow: 0 0 1px rgba(0,0,0,0.15);
+    }
 }
