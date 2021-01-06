@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body onload="CarregaUsuarioLogado()" >
+<body style="margin:0;padding:0;" onload="CarregaUsuarioLogado()">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -23,8 +23,8 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>                    
-                       
+                        </li>
+
                     </ul>
                     @using Microsoft.AspNetCore.Http
                     @inject IHttpContextAccessor HttpContextAccessor
@@ -32,7 +32,8 @@
             </div>
         </nav>
     </header>
-    <div class="container" >
+    
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
