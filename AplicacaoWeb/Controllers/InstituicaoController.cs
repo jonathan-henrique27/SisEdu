@@ -2,36 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using AplicacaoWeb.Models.Model;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace AplicacaoWeb.Controllers
 {
-    public class EmpresasController : Controller
+    public class InstituicaoController : Controller
     {
         public IActionResult Index()
         {
-          
-            ViewBag.ListaEmpresas = new Empresa().ListarTodasEmpresas();
+            ViewBag.ListarInstituicoes = new Instituicao().ListarTodasInstituicoes();
             return View();
         }
+
+        [HttpGet]
         public IActionResult Cadastro(int? id)
         {
             if (id != null)
             {
-                //Carregar o registro do cliente numa viewBag
-                ViewBag.Empresa = new Empresa().RetornarEmpresa(id);
+                //Carregar o registro da instituicao numa viewBag
+                ViewBag.Instituicao = new Instituicao().RetornarInstituicao(id);
+            }
+            else 
+            {
+                ViewBag.ListarEmpresas = new Instituicao().RetornarListaEmpresas();
             }
             return View();
         }
 
         [HttpPost]
-        public IActionResult Cadastro(Empresa empresa)
+        public IActionResult Cadastro(Instituicao instituicao)
         {
             if (ModelState.IsValid)
             {
-                empresa.Gravar();
+                instituicao.Gravar();
                 return RedirectToAction("Index");
             }
             return View();
@@ -42,11 +46,10 @@ namespace AplicacaoWeb.Controllers
             return View();
         }
 
-        public IActionResult ExcluirEmpresa(int id)
+        public IActionResult ExcluirInstituicao(int id)
         {
-            new Empresa().Excluir(id);
+            new Instituicao().Excluir(id);
             return View();
         }
     }
 }
-    

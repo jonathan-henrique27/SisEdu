@@ -46,7 +46,7 @@ namespace AplicacaoWeb.Models.Model
 
             Empresa item;
             DAL objDAL = new DAL();
-            string sql = $"SELECT idEmpresa, RazaoSocial, CNPJ, IE, IM, Complemento FROM Empresa order by RazaoSocial asc";
+            string sql = $"SELECT idEmpresa, RazaoSocial, CNPJ, IE, IM, Complemento FROM Empresa  order by RazaoSocial asc";
             DataTable dt = objDAL.RetDataTable(sql);
 
             item = new Empresa

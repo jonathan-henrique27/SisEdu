@@ -1,0 +1,51 @@
+﻿<h3>Lista de Instituições</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Codigo</th>
+            <th>Nome</th>
+            <th>Registro Diario</th>
+            <th>ID Empresa</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in (List<AplicacaoWeb.Models.Model.Instituicao>)ViewBag.ListarInstituicoes)
+            {
+                <tr>
+                    <td><button type="button" class="btn btn-warning" onclick="Editar(@item.IdInstituicao)">Editar</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="Excluir(@item.IdInstituicao)">Excluir</button></td>
+
+                    <td>@item.IdInstituicao</td>
+                    <td>@item.Nome</td>
+                    <td>@item.RegistroDiario</td>
+                    <td>@item.IdEmpresa</td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<br />
+<button class="btn btn-block btn-primary" type="button" onclick="Cadastrar()">Cadastrar Instituição</button>
+
+<script>
+    function Cadastrar()
+    {
+        window.location.href = "../Instituicao/Cadastro"
+    }
+
+    function Editar(id) {
+        window.location.href = "../Instituicao/Cadastro/" + id;
+    }
+
+    function Excluir(IdInstituicao) {
+        window.location.href = "../Instituicao/Excluir/" + IdInstituicao;
+    }
+
+</script>
+

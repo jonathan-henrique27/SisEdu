@@ -1,0 +1,36 @@
+﻿@model AplicacaoWeb.Models.Model.Instituicao
+
+<h2>Cadastro de Instituições</h2>
+
+<br />
+
+<form asp-controller="Instituicao" asp-action="Cadastro">
+    <input type="hidden" asp-for="IdInstituicao" value="@try { @ViewBag.Instituicao.IdInstituicao } catch { }" />
+
+    <div class="form-group">
+        <label>Nome da Instituição</label>
+        <input asp-for="Nome" type="text" class="form-control" value="@try { @ViewBag.Instituicao.Nome } catch { }" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Registro Diario</label>
+        <input asp-for="RegistroDiario" type="text" class="form-control" value="@try { @ViewBag.Instituicao.RegistroDiario } catch { }" />
+        <span asp-validation-for="RegistroDiario" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+            <label>Empresa</label>
+            <select asp-for="IdEmpresa" class="form-control">
+                @{
+                    foreach (var item in (List<AplicacaoWeb.Models.Model.Empresa>)ViewBag.ListarEmpresas)
+                    {
+                        <option value="@item.IdEmpresa">@item.RazaoSocial</option>
+                    }
+                }
+            </select>
+   </div>
+    <button type="submit" class="btn btn-block btn-success">Registrar</button>
+</form>
+
+
