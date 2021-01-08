@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AplicacaoWeb.Uteis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +29,10 @@ namespace AplicacaoWeb
             services.AddControllersWithViews();
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddDbContext<SisEduContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SisEduContext"), Builder =>
+                    Builder.MigrationsAssembly("AplicacaoWeb")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,11 +11,12 @@ namespace AplicacaoWeb.Models.Model
 {
     public class Empresa
     {
-        public string IdEmpresa { get; set; }
+        public int IdEmpresa { get; set; }
         public string RazaoSocial { get; set; }
         public string CNPJ { get; set; }
         public string IE { get; set; }
         public string IM { get; set; }
+        public int Numero { get; set; }
         public string Complemento { get; set; }
 
         public List<Empresa> ListarTodasEmpresas()
@@ -30,7 +31,7 @@ namespace AplicacaoWeb.Models.Model
             {
                 item = new Empresa
                 {
-                    IdEmpresa = dt.Rows[i]["IdEmpresa"].ToString(),
+                    IdEmpresa = (int)dt.Rows[i]["IdEmpresa"],
                     RazaoSocial = dt.Rows[i]["RazaoSocial"].ToString(),
                     CNPJ = dt.Rows[i]["CNPJ"].ToString(),
                     IE = dt.Rows[i]["IE"].ToString(),
@@ -46,12 +47,12 @@ namespace AplicacaoWeb.Models.Model
 
             Empresa item;
             DAL objDAL = new DAL();
-            string sql = $"SELECT idEmpresa, RazaoSocial, CNPJ, IE, IM, Complemento FROM Empresa  order by RazaoSocial asc";
+            string sql = $"SELECT idEmpresa, RazaoSocial, CNPJ, IE, IM, Complemento FROM Empresa where idEmpresa ='{id}' order by RazaoSocial asc";
             DataTable dt = objDAL.RetDataTable(sql);
 
             item = new Empresa
             {
-                IdEmpresa = dt.Rows[0]["IdEmpresa"].ToString(),
+                IdEmpresa = (int)dt.Rows[0]["IdEmpresa"],
                 RazaoSocial = dt.Rows[0]["RazaoSocial"].ToString(),
                 CNPJ = dt.Rows[0]["CNPJ"].ToString(),
                 IE = dt.Rows[0]["IE"].ToString(),
@@ -66,7 +67,7 @@ namespace AplicacaoWeb.Models.Model
             DAL objDal = new DAL();
             string sql = string.Empty;
 
-            if (IdEmpresa!= null)
+            if (IdEmpresa == 0)
             {
                 sql = $"UPDATE EMPRESA SET RAZAOSOCIAL='{RazaoSocial}', CNPJ='{CNPJ}', IE='{IE}', IM='{IM}', COMPLEMENTO='{Complemento}' WHERE IDEMPRESA = '{IdEmpresa}'";
             }

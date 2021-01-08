@@ -12,9 +12,11 @@ namespace AplicacaoWeb.Models.Model
         public string IdInstituicao { get; set; }
         public string Nome { get; set; }
         public string RegistroDiario { get; set; }
-        public string IdEmpresa { get; set; }
+        public int IdEmpresa { get; set; }
 
-        public List<Empresa> RetornarListaEmpresas()
+        public ICollection<Empresa> Empresas { get; set; } = new List<Empresa>();
+
+        public List<Empresa> RetornarListaEmpresas(int? id)
         {
             return new Empresa().ListarTodasEmpresas();
         }
@@ -25,9 +27,9 @@ namespace AplicacaoWeb.Models.Model
             List<Instituicao> lista = new List<Instituicao>();
             Instituicao item;
             DAL objDAL = new DAL();
-            string sql = "SELECT IT.idInstituicao, IT.Nome, IT.RegistroDiario, EMP.IdEmpresa from Instituicao IT join Empresa EMP on IT.idEmpresa = EMP.idEmpresa order by IT.Nome asc";
+            string sql = "SELECT idInstituicao, Nome, RegistroDiario, IdEmpresa from Instituicao";
             DataTable dt = objDAL.RetDataTable(sql);
-
+         
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 item = new Instituicao
@@ -35,8 +37,8 @@ namespace AplicacaoWeb.Models.Model
                     IdInstituicao = dt.Rows[i]["IDINSTITUICAO"].ToString(),
                     Nome = dt.Rows[i]["NOME"].ToString(),
                     RegistroDiario = dt.Rows[i]["REGISTRODIARIO"].ToString(),
-                    IdEmpresa = dt.Rows[i]["IDEMPRESA"].ToString(),
-
+                    IdEmpresa = (int)dt.Rows[i]["IDEMPRESA"],
+               
                 };
                 lista.Add(item);
             }
@@ -56,7 +58,7 @@ namespace AplicacaoWeb.Models.Model
                 IdInstituicao = dt.Rows[0]["IDINSTITUICAO"].ToString(),
                 Nome = dt.Rows[0]["NOME"].ToString(),
                 RegistroDiario = dt.Rows[0]["REGISTRODIARIO"].ToString(),
-                IdEmpresa = dt.Rows[0]["IDEMPRESA"].ToString(),
+                IdEmpresa = (int)dt.Rows[0]["IDEMPRESA"],
                
             };
 

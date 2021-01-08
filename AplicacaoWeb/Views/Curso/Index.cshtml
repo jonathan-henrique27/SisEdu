@@ -1,0 +1,50 @@
+﻿<h3>Lista de Cursos</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Codigo</th>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>ID Instituição</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in (List<AplicacaoWeb.Models.Model.Curso>)ViewBag.ListarCursos)
+            {
+                <tr>
+                    <td><button type="button" class="btn btn-warning" onclick="Editar(@item.IdCurso)">Editar</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="Excluir(@item.IdCurso)">Excluir</button></td>
+
+                    <td>@item.IdCurso</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Tipo</td>
+                    <td>@item.IdInstituicao</td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<br />
+<button class="btn btn-block btn-primary" type="button" onclick="Cadastrar()">Cadastrar Curso</button>
+
+<script>
+    function Cadastrar() {
+        window.location.href = "../Curso/Cadastro"
+    }
+
+    function Editar(id) {
+        window.location.href = "../Curso/Cadastro/" + id;
+    }
+
+    function Excluir(Id) {
+        window.location.href = "../Curso/Excluir/" + Id;
+    }
+
+</script>
+

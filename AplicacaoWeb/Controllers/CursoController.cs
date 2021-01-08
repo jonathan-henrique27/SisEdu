@@ -2,43 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using AplicacaoWeb.Models.Model;
-using AplicacaoWeb.Uteis;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AplicacaoWeb.Controllers
 {
-    public class EmpresasController : Controller
+    public class CursoController : Controller
     {
-        private readonly  SisEduContext _context;
-
-
-        public EmpresasController(SisEduContext context)
-        {
-            _context = context;
-        }
         public IActionResult Index()
         {
-          
-            ViewBag.ListaEmpresas = new Empresa().ListarTodasEmpresas();
+            ViewBag.ListarCursos = new Curso().ListarTodosCursos();
             return View();
         }
+
+        [HttpGet]
         public IActionResult Cadastro(int? id)
         {
             if (id != null)
             {
-                //Carregar o registro do cliente numa viewBag
-                ViewBag.Empresa = new Empresa().RetornarEmpresa(id);
+                //Carregar o registro do curso numa viewBag
+                ViewBag.Curso = new Curso().RetornarCurso(id);
+            }
+            else
+            {
+                ViewBag.ListarIntituicoes = new Curso().RetornarListaInstituicoes(id);
             }
             return View();
         }
 
         [HttpPost]
-        public IActionResult Cadastro(Empresa empresa)
+        public IActionResult Cadastro(Curso curso)
         {
             if (ModelState.IsValid)
             {
-                empresa.Gravar();
+                curso.Gravar();
                 return RedirectToAction("Index");
             }
             return View();
@@ -49,11 +46,10 @@ namespace AplicacaoWeb.Controllers
             return View();
         }
 
-        public IActionResult ExcluirEmpresa(int id)
+        public IActionResult ExcluirCurso(int id)
         {
-            new Empresa().Excluir(id);
+            new Curso().Excluir(id);
             return View();
         }
     }
 }
-    
